@@ -1,15 +1,17 @@
 #include <iostream>
 #include <vector>
+#include "Player.hpp"
 #pragma once
 
 namespace coup{
     class Game{
         private:
-            std::vector<std::string> players_list;
-            int player_turn;
+            std::vector<player> players_list;
+            size_t player_turn;
             bool active;
-            std::vector<std::string> last_act;
+            bool is_started:
         public:
+            Game();
             std::string turn();
             std::vector<std::string> players();
             std::string winner();
