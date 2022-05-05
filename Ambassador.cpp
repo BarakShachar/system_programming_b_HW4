@@ -3,12 +3,35 @@
 #include "Player.hpp"
 
 namespace coup{
-    Ambassador::Ambassador(Game game, std::string name){
-        this->name = name;
-        this->game = game;
-        this->coins_count = 0;
-        this->player_role = "Ambassador";
+    void Ambassador::transfer(Player& from_player, Player& to_player){
+        if (this->game->get_player_turn() != this->name){
+            throw std::invalid_argument("its not your turn");
+        }
+        if (!this->game->get_is_started()){
+            this->game->start_game();
+        }
+        if (!from_player.coins()){
+            throw std::invalid_argument("cant transfer from this player");
+        }
+        from_player.update_coins(-1);
+        to_player.update_coins(1);
+        this->last_act.clear();
+        this->last_act.push_back("transfer");
+        this->last_act.push_back(from_player.get_name());
+        this->last_act.push_back(to_player.get_name());
+        this->game->end_turn("transfer");
     }
-    void Ambassador::transfer(Player from_player, Player to_player){}
-    void Ambassador::block(Player player){}
+
+    void Ambassador::block(Player& player){
+        if (!this->game->get_is_started()){
+            this->game->start_game();
+        }
+        if (player.role() != "Captain" || player.get_last_action()[0] != "steal"){
+            throw std::invalid_argument("cant block this");
+        }
+        player.update_coins(-2);
+        Player* stolen_player = this->game->get_player(player.get_last_action()[2]);
+        stolen_player->update_coins(2); 
+        this->last_act.clear();
+    }
 }

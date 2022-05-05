@@ -4,7 +4,7 @@
 namespace coup{
     class Contessa: public Player{
         public:
-            Contessa(Game game, std::string name);
-            void block(Player player);
+            Contessa(Game& game, std::string name) : Player(&game, name, "Contessa"){};
+            void block(Player& player);
     };
 }
