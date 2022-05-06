@@ -10,7 +10,7 @@ namespace coup{
         if (!this->game->get_is_started()){
             this->game->start_game();
         }
-        if (!from_player.coins()){
+        if (from_player.coins() == 0){
             throw std::invalid_argument("cant transfer from this player");
         }
         from_player.update_coins(-1);
@@ -30,7 +30,7 @@ namespace coup{
             throw std::invalid_argument("cant block this");
         }
         player.update_coins(-2);
-        Player* stolen_player = this->game->get_player(player.get_last_action()[2]);
+        Player* stolen_player = this->game->get_player(player.get_last_action()[1]);
         stolen_player->update_coins(2); 
         this->last_act.clear();
     }

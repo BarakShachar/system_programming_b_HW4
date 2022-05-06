@@ -28,7 +28,7 @@ namespace coup{
         if (!this->is_started || this->active){
             throw std::invalid_argument("game hasnt finished yet");
         }
-        std::string player_won = "";
+        std::string player_won;
         for(Player* player : this->players_list){
             if (player->get_active()){
                 player_won = player->get_name();
@@ -45,7 +45,7 @@ namespace coup{
         return this->players_list[this->player_turn]->get_name();
     }
 
-    void Game::end_turn(std::string act){
+    void Game::end_turn(std::string const &act){
         if (act == "coup"){
             int active_players = 0;
             for (Player* player : this->players_list){
@@ -74,12 +74,16 @@ namespace coup{
         this->is_started = true;
     }
 
-    Player* Game::get_player(std::string name){
+    Player* Game::get_player(std::string const &name){
         for (Player* player : this->players_list){
             if (player->get_name() == name){
                 return player;
             }
         }
         return NULL;
+    }
+
+    int Game::players_in_game(){
+        return this->players_list.size();
     }
 }

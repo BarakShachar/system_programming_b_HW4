@@ -1,15 +1,22 @@
 #include <iostream>
 #include "Player.hpp"
 
+int const MAX_PLAYERS = 6;
+int const MAX_COINS_IN_HAND = 10;
+int const COINS_FOR_COUP = 7;
+
 namespace coup{
     Player::Player(Game* game, std::string name, std::string player_role){
         if (game->get_is_started()){
             throw std::invalid_argument("cant join, already started");
         }
-        this->name = name;
+        if (game->players_in_game() == MAX_PLAYERS){
+            throw std::invalid_argument("too much players");
+        }
+        this->name = std::move(name);
         this->game = game;
         this->coins_count = 0;
-        this->player_role = player_role;
+        this->player_role = std::move(player_role);
         this->active = true;
         this->game->add_player(this);
     }
@@ -23,7 +30,7 @@ namespace coup{
         if (!this->game->get_is_started()){
             this->game->start_game();
         }
-        if (this->coins_count >= 10){
+        if (this->coins_count >= MAX_COINS_IN_HAND){
             throw std::invalid_argument("you must do a coup");
         }
         this->coins_count++;
@@ -43,7 +50,7 @@ namespace coup{
         if (!this->game->get_is_started()){
             this->game->start_game();
         }
-        if (this->coins_count >= 10){
+        if (this->coins_count >= MAX_COINS_IN_HAND){
             throw std::invalid_argument("you must do a coup");
         }
         this->coins_count += 2;
@@ -56,13 +63,13 @@ namespace coup{
         if (this->game->get_player_turn() != this->name){
             throw std::invalid_argument("its not your turn");
         }
-        if (this->coins_count < 7){
+        if (this->coins_count < COINS_FOR_COUP){
             throw std::invalid_argument("no enough coins");
         }
         if (!player.get_active()){
             throw std::invalid_argument("this player already eliminated");
         }
-        this->coins_count -= 7;
+        this->coins_count -= COINS_FOR_COUP;
         player.set_active(false);
         this->last_act.clear();
         this->last_act.push_back("coup");

@@ -18,9 +18,10 @@ namespace coup{
             std::string winner();
             void add_player(Player* player);
             std::string get_player_turn();
-            void end_turn(std::string act);
+            void end_turn(std::string const &act);
             bool get_is_started();
             void start_game();
-            Player* get_player(std::string name);
+            Player* get_player(std::string const &name);
+            int players_in_game();
     };
 }

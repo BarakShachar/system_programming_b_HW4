@@ -2,6 +2,8 @@
 #include "Duke.hpp"
 #include "Player.hpp"
 
+int const MAGIC_NUMBER_10_FOR_TIDY = 10;
+
 namespace coup{
     void Duke::tax(){
         if (this->game->get_player_turn() != this->name){
@@ -13,7 +15,7 @@ namespace coup{
         if (!this->game->get_is_started()){
             this->game->start_game();
         }
-        if (this->coins_count >= 10){
+        if (this->coins_count >= MAGIC_NUMBER_10_FOR_TIDY){
             throw std::invalid_argument("you must do a coup");
         }
         this->coins_count += 3;
