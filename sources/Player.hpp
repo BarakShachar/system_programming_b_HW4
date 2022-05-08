@@ -19,9 +19,9 @@ namespace coup{
             void foreign_aid();
             void coup(Player& player);
             std::string role();
-            int coins();
+            int coins() const;
             std::string get_name();
-            bool get_active();
+            bool get_active() const;
             void set_active(bool activity);
             void update_coins(int sum);
             std::vector<std::string> get_last_action();

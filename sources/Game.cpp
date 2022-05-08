@@ -66,7 +66,7 @@ namespace coup{
         }
     }
 
-    bool Game::get_is_started(){
+    bool Game::get_is_started() const{
         return this->is_started;
     }
 

@@ -26,31 +26,25 @@ int main() {
 
 	Game game_1{};
 
-	/* This player drew the "Duke" card, his name is Moshe
-	and he is a player in game_1 */
-	Duke duke{game_1, "Moshe"};
-	Assassin assassin{game_1, "Yossi"};
-	Ambassador ambassador{game_1, "Meirav"};
-	Captain captain{game_1, "Reut"};
-	Contessa contessa{game_1, "Gilad"};
+
+	Duke duke{game_1, "player 1"};
+	Assassin assassin{game_1, "player 2"};
+	Ambassador ambassador{game_1, "player 3"};
+	Captain captain{game_1, "player 3"};
+	Contessa contessa{game_1, "player 3"};
 
 	vector<string> players = game_1.players();
-
-	/*
-		prints:
-		Moshe
-		Yossi
-		Meirav
-		Reut
-		Gilad
-	*/
+	cout << "Game.players() function" << endl;
 	for(string name : players){
 		cout << name << endl;
 	}
+	cout << "***********************" << endl;
 
-	// prints Moshe
+	cout << "Game.turn() function" << endl;
 	cout << game_1.turn() << endl;
+	cout << "***********************" << endl;
 
+	cout << "Game.turn() function" << endl;
 	// throws no exceptions
 	duke.income();
 	assassin.income();

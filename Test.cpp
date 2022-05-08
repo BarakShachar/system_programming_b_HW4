@@ -84,3 +84,20 @@ TEST_CASE("Game winner + coup"){
     CHECK(game_1.winner() == "Yossi");
     CHECK_THROWS(ambassador.income());
 }
+
+TEST_CASE("too much players"){
+    Game game_1{};
+	Duke duke{game_1, "player 1"};
+	Assassin assassin{game_1, "player 2"};
+	Ambassador ambassador{game_1, "player 3"};
+	Captain captain{game_1, "player 4"};
+	Contessa contessa{game_1, "player 5"};
+    Contessa contessa1{game_1, "player 6"};
+    CHECK_THROWS(Contessa contessa2(game_1, "player 7"));
+}
+
+TEST_CASE("too few players"){
+    Game game_1{};
+	Duke duke{game_1, "player 1"};
+    CHECK_THROWS(duke.income());
+}

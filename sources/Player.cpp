@@ -81,7 +81,7 @@ namespace coup{
         return this->player_role;
     }
 
-    int Player::coins(){
+    int Player::coins() const{
         return this->coins_count;
     }
 
@@ -89,7 +89,7 @@ namespace coup{
         return this->name;
     }
 
-    bool Player::get_active(){
+    bool Player::get_active() const{
         return this->active;
     }
 
