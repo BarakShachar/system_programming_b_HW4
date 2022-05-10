@@ -2,11 +2,11 @@
 #include "Assassin.hpp"
 #include "Player.hpp"
 
-int const MAGIC_NUMBER_7_FOR_TIDY = 7;
+int const COINS_TO_COUP = 7;
 
 namespace coup{
     void Assassin::coup(Player& player){
-        if (this->game->get_player_turn() != this->name){
+        if (this->game->get_player_turn() != this){
             throw std::invalid_argument("its not your turn");
         }
         if (!this->game->get_is_started()){
@@ -18,7 +18,7 @@ namespace coup{
         if (this->coins_count < 3){
             throw std::invalid_argument("no enough coins");
         }
-        if (this->coins_count >= MAGIC_NUMBER_7_FOR_TIDY){
+        if (this->coins_count >= COINS_TO_COUP){
             Player::coup(player);
         }
         else{

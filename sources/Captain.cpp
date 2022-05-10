@@ -7,7 +7,7 @@ namespace coup{
         if (!this->game->get_is_started()){
             this->game->start_game();
         }
-        if (player.role() != "Captain" || player.get_last_action()[0] != "steal"){
+        if (player.role() != "Captain" || player.get_last_action().empty() || player.get_last_action()[0] != "steal"){
             throw std::invalid_argument("cant block this");
         }
         Player* stolen_player = this->game->get_player(player.get_last_action()[1]);
@@ -22,7 +22,7 @@ namespace coup{
     }
     
     void Captain::steal(Player& player){
-        if (this->game->get_player_turn() != this->name){
+        if (this->game->get_player_turn() != this){
             throw std::invalid_argument("its not your turn");
         }
         if (!this->game->get_is_started()){

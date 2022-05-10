@@ -21,7 +21,7 @@ namespace coup{
         this->game->add_player(this);
     }
     void Player::income(){
-        if (this->game->get_player_turn() != this->name){
+        if (this->game->get_player_turn() != this){
             throw std::invalid_argument("its not your turn");
         }
         if (!this->game->get_is_started() && this->game->players().size()==1){
@@ -41,7 +41,7 @@ namespace coup{
 
     void Player::foreign_aid(){
 
-        if (this->game->get_player_turn() != this->name){
+        if (this->game->get_player_turn() != this){
             throw std::invalid_argument("its not your turn");
         }
         if (!this->game->get_is_started() && this->game->players().size()==1){
@@ -60,7 +60,7 @@ namespace coup{
     }
 
     void Player::coup(Player& player){
-        if (this->game->get_player_turn() != this->name){
+        if (this->game->get_player_turn() != this){
             throw std::invalid_argument("its not your turn");
         }
         if (this->coins_count < COINS_FOR_COUP){

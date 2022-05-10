@@ -18,7 +18,6 @@ using namespace std;
 int main() {
 	Game game_1{};
 
-
 	Duke duke{game_1, "player 1"};
 	Assassin assassin{game_1, "player 2"};
 	Ambassador ambassador{game_1, "player 3"};
@@ -104,7 +103,7 @@ int main() {
     cout << "captain.coins() output: " << captain.coins() << endl;
     cout << "assassin.coins() output: " << assassin.coins() << endl;
     captain.steal(assassin);
-    cout << "duke.coins() after steal output: " << captain.coins() << endl;
+    cout << "captain.coins() after steal output: " << captain.coins() << endl;
     cout << "assassin.coins() after steal output: " << assassin.coins() << endl;
     cout << "***********************" << endl << endl;
 

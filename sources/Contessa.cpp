@@ -7,7 +7,7 @@ namespace coup{
         if (!this->game->get_is_started()){
             this->game->start_game();
         }
-        if (player.role() != "Assassin" || player.get_last_action()[0] != "coup"){
+        if (player.role() != "Assassin" || player.get_last_action().empty() || player.get_last_action()[0] != "coup"){
             throw std::invalid_argument("Contessa can only block assassin coup");
         }
         if (player.get_last_action().size() != 3){

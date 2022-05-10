@@ -41,8 +41,8 @@ namespace coup{
         this->players_list.push_back(player);
     }
 
-    std::string Game::get_player_turn(){
-        return this->players_list[this->player_turn]->get_name();
+    Player* Game::get_player_turn(){
+        return this->players_list[this->player_turn];
     }
 
     void Game::end_turn(std::string const &act){

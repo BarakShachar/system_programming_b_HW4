@@ -17,7 +17,7 @@ namespace coup{
             std::vector<std::string> players();
             std::string winner();
             void add_player(Player* player);
-            std::string get_player_turn();
+            Player* get_player_turn();
             void end_turn(std::string const &act);
             bool get_is_started() const;
             void start_game();

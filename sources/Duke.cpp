@@ -6,7 +6,7 @@ int const MAGIC_NUMBER_10_FOR_TIDY = 10;
 
 namespace coup{
     void Duke::tax(){
-        if (this->game->get_player_turn() != this->name){
+        if (this->game->get_player_turn() != this){
             throw std::invalid_argument("its not your turn");
         }
         if (!this->game->get_is_started() && this->game->players().size()==1){
@@ -28,7 +28,7 @@ namespace coup{
         if (!this->game->get_is_started()){
             this->game->start_game();
         }
-        if (player.get_last_action()[0] != "foreign_aid"){
+        if (player.get_last_action().empty() || player.get_last_action()[0] != "foreign_aid"){
             throw std::invalid_argument("cant block this");
         }
         player.update_coins(-2); 
